@@ -191,4 +191,16 @@ impl<'a> Handler<'a> {
             ret
         }
     }
+
+    /// Do a set_tid_address() syscall
+    pub fn set_tid_address(&mut self) -> u64 {
+        // Unimplemented, this is used by the kernel wake
+        // up a thread that is doing a futex wait on a memory
+        // location pointed to by tidptr when this thread exits
+        // and returns the caller's thread id (1 for now)
+        let _tidptr = self.aex.gpr.rdi;
+        let tid: u64 = 1;
+
+        tid
+    }
 }
